@@ -51,7 +51,7 @@ p {
 .menu {
   padding: 5rem 0;
 }
-.title {
+.title, .navigation {
   text-align: center;
   margin-bottom: 2rem;
 }
