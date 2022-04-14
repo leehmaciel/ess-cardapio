@@ -51,9 +51,18 @@ p {
 .menu {
   padding: 5rem 0;
 }
+
 .title, .navigation {
   text-align: center;
   margin-bottom: 2rem;
+}
+
+.cardapio {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 80vw;
+
 }
 
 .underline {
@@ -92,7 +101,6 @@ p {
   width: 90vw;
   margin: 0 auto;
   max-width: 1170px;
-  display: grid;
   gap: 3rem 2rem;
   justify-items: center;
 }

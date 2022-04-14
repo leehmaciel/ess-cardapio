@@ -3,7 +3,7 @@ import {useForm} from "react-hook-form";
 import Axios from "axios";
 import './Add.css';
 
-let url = "http://localhost:3001/"
+let url = "http://localhost:3001/";
 
 function Add() {
 
