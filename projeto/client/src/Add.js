@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import {useForm} from "react-hook-form";
+import Axios from "axios";
 import './Add.css';
+
+let url = "http://localhost:3001/"
 
 function Add() {
 
   const {register, handleSubmit} = useForm();
 
-  const onSubmit = (event) => {
-    console.log(event);
+  const onSubmit = (values) => {
+    Axios.post(url + "add", {
+      name: values.name,
+      price: values.price,
+      description: values.description, 
+    }).then((response) => {
+        console.log(response);
+    });
   }
 
   return (
@@ -24,7 +33,7 @@ function Add() {
       <label>Preco:
         <input 
         type="text" 
-        {...register("cost")}
+        {...register("price")}
         placeholder="Digite o valor"
       />
       </label>
