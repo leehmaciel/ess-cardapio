@@ -19,17 +19,31 @@ const db = mysql.createPool({
     database: "cardapio"
 });
 
+//CREATE
 app.post('/add', (req, res) => {
     const { name } = req.body;
     const { price } = req.body;
     const { description } = req.body;
 
-    let mysql = "INSERT INTO itens (name, price, description) VALUES (?, ?, ?)";
+    let request = "INSERT INTO itens (name, price, description) VALUES (?, ?, ?)";
 
-    db.query(mysql, [name, price, description], (err, result) => {
+    db.query(request, [name, price, description], (err, result) => {
         res.send(result);
     });
 });
+
+//READ
+app.get("/all", (req, res) => {
+    let request = "SELECT * FROM itens";
+    
+    db.query(request, (err, result) => {
+        err ? console.log(err) : res.send(result);
+    })
+})
+
+//UPDATE
+
+//DELETE
 
 app.listen(3001, () => {
     console.log("Server running!");
