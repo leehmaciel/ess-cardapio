@@ -6,24 +6,24 @@ import ItensEdit from "./ItensEdit";
 
 const Menu = ({isMenu}) => {
 
-    const [showItens, setShowItens] = useState();
+    const [showItems, setShowItems] = useState();
 
     useEffect(() => {
       Axios.get(variables.URL + "all").then((response) => {
-        setShowItens(response.data);
-      });
+        setShowItems(response.data);
+      }, [showItems]);
     });
 
     return (
         <div className="section-center">
 
-            {typeof showItens !== "undefined" && showItens.map((item) => {
+            {typeof showItems !== "undefined" && showItems.map((item) => {
                 if (isMenu){
                     return(
                         <Itens 
                         key={item.id} 
-                        showItem={showItens} 
-                        setShowItem={setShowItens}
+                        showItems={showItems} 
+                        setShowItems={setShowItems}
                         id={item.id}
                         name={item.name}
                         price={item.price}
@@ -35,8 +35,8 @@ const Menu = ({isMenu}) => {
                    return(
                     <ItensEdit 
                     key={item.id} 
-                    showItem={showItens} 
-                    setShowItem={setShowItens}
+                    showItems={showItems} 
+                    setShowItems={setShowItems}
                     id={item.id}
                     name={item.name}
                     price={item.price}
