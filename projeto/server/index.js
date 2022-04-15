@@ -38,12 +38,36 @@ app.get("/all", (req, res) => {
     
     db.query(request, (err, result) => {
         err ? console.log(err) : res.send(result);
-    })
-})
+    });
+});
 
 //UPDATE
+app.put("/edit", (req, res) => {
+    const { id } = req.body;
+    const { name } = req.body;
+    const { price } = req.body;
+    const { description } = req.body;
+
+    let request = "UPDATE itens SET name= ?, price = ?, description = ? WHERE id = ?"
+
+    db.query(request, [name, price, description, id], (err, result) => {
+        err ? console.log(err) : res.send(result);
+    });
+});
 
 //DELETE
+app.delete("/delete/:id", (req, res) => {
+    const { id } = req.params;
+
+    let request = "DELETE FROM itens WHERE id = ?";
+
+    console.log(request);
+    
+    db.query(request, id, (err, result) => {
+        err ? console.log(err) : res.send(result);
+    });
+});
+
 
 app.listen(3001, () => {
     console.log("Server running!");
