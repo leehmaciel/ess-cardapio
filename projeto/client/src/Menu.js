@@ -1,25 +1,38 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import Axios from 'axios';
+import variables from './variables.json';
+import Itens from './Itens';
 
-const Menu = ({items}) => {
+const Menu = () => {
+
+    const [showItens, setShowItens] = useState();
+
+    useEffect(() => {
+      Axios.get(variables.URL + "all").then((response) => {
+        setShowItens(response.data);
+      });
+    });
+
     return (
-      <div className="section-center">
-        {items.map((item) => {
-            const {id, title, img, desc, price} = item;
-            
+        <div className="section-center">
+
+            {typeof showItens !== "undefined" && showItens.map((item) => {
+
             return(
-                <article key={id} className="menu-item">
-                    <img src={img} alt={title} className="photo" />
-                    <div className="item-info">
-                        <header>
-                            <h4>{title}</h4>
-                            <h4 className="price">R${price}</h4>
-                        </header>
-                        <p className="item-text">{desc}</p>
-                    </div>
-                </article>
+                <Itens 
+                key={item.id} 
+                showItem={showItens} 
+                setShowItem={setShowItens}
+                id={item.id}
+                name={item.name}
+                price={item.price}
+                description={item.description}
+                />
             );
-        })}
-      </div>  
+
+            })}
+
+        </div>
     );
 };
 

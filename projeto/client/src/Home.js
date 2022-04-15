@@ -1,30 +1,22 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 import Menu from "./Menu";
+import Edit from "./Edit";
 import Categories from "./Categories";
-import Itens from './Itens';
 import './App.css';
 import items from "./data";
 import logo from "./logo.svg";
 import Axios from 'axios';
 
 const allCategories = ["all", ...new Set(items.map((item) => item.category))];
-let url = "http://localhost:3001/";
 
-const Home = () => {
+const Home = ({isMenu}) => {
 
     let navigate = useNavigate ();
 
     const [menuItems, setMenuItems] = useState(items);
     const [activeCategory, setActiveCategory] = useState("");
     const [categories, setCategories] = useState(allCategories);
-    const [showItens, setShowItens] = useState();
-
-    useEffect(() => {
-      Axios.get(url + "all").then((response) => {
-        setShowItens(response.data);
-      });
-    });
     
     const filterItems = (category) => {
       setActiveCategory (category);
@@ -54,26 +46,10 @@ const Home = () => {
         <Categories categories={categories} activeCategory={activeCategory} filterItems={filterItems} /> 
 
       </section>
-      <div className="section-center">
-
-        {typeof showItens !== "undefined" && showItens.map((item) => {
-
-          return(
-            <Itens 
-              key={item.id} 
-              showItem={showItens} 
-              setShowItem={setShowItens}
-              id={item.id}
-              name={item.name}
-              price={item.price}
-              description={item.description}
-            />
-          );
-
-        })}
-
-        </div>
-        
+      
+      {isMenu ? <Menu /> : <Edit />}
+      
+      
         
       
     </main>

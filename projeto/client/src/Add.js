@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import {useForm} from "react-hook-form";
 import Axios from "axios";
+import variables from './variables.json';
 import './Add.css';
-
-let url = "http://localhost:3001/";
 
 function Add() {
 
   const {register, handleSubmit} = useForm();
 
   const onSubmit = (values) => {
-    Axios.post(url + "add", {
+    Axios.post(variables.URL + "add", {
       name: values.name,
       price: values.price,
       description: values.description, 
