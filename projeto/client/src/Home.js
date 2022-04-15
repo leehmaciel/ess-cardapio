@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 import Menu from "./Menu";
-import Edit from "./Edit";
 import Categories from "./Categories";
 import './App.css';
 import items from "./data";
@@ -29,30 +28,30 @@ const Home = ({isMenu}) => {
     };
 
     return (
-    <main>
-      <section className="menu section"> 
+        <main>
+            <section className="menu section"> 
 
-        <div className="title">
-          <img src={logo} className="logo" />
-          <h2> Menu List </h2>
-          <div className="underline"></div>
-        </div>
+                <div className="title">
+                <img src={logo} className="logo" />
+                <h2> Menu List </h2>
+                <div className="underline"></div>
+                </div>
 
-        <div className="navigation">
-          <button onClick={() => {navigate("/add");}}>Add</button>
-          <button onClick={() => {navigate("/edit");}}>Edit</button>
-        </div>
-      
-        <Categories categories={categories} activeCategory={activeCategory} filterItems={filterItems} /> 
+                <div className="navigation">
+                <button onClick={() => {navigate("/add");}}>Add</button>
+                <button onClick={() => {navigate("/edit");}}>Edit</button>
+                </div>
+            
+                <Categories categories={categories} activeCategory={activeCategory} filterItems={filterItems} /> 
 
-      </section>
-      
-      {isMenu ? <Menu /> : <Edit />}
-      
-      
+            </section>
         
-      
-    </main>
+            <Menu isMenu={isMenu} />
+        
+        
+            
+        
+        </main>
   );
 };
 

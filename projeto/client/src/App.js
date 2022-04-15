@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Home from "./Home";
 import Add from "./Add";
-import Edit from "./Edit";
 import './App.css';
 
 function App() {
