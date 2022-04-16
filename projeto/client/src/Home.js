@@ -8,6 +8,7 @@ import items from "./data";
 import logo from "./logo.svg";
 import Axios from 'axios';
 import variables from './variables.json';
+import Button from '@mui/material/Button';
 const allCategories = ["all", ...new Set(items.map((item) => item.category))];
 
 const Home = ({isMenu}) => {
@@ -53,8 +54,8 @@ const Home = ({isMenu}) => {
                         showItems={showItems} 
                         setShowItems={setShowItems}
                     />
-                    <button onClick={() => setOpen(true)}>Add</button>
-                    <button onClick={() => {navigate("/edit");}}>Edit</button>
+                    <Button variant="contained" onClick={() => setOpen(true)}>Add</Button>
+                    <Button variant="contained" onClick={() => {navigate("/edit");}}>Edit</Button>
                 </div>
             
                 <Categories categories={categories} activeCategory={activeCategory} filterItems={filterItems} /> 
