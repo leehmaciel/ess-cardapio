@@ -4,15 +4,7 @@ import variables from './variables.json';
 import Itens from './Itens';
 import ItensEdit from "./ItensEdit";
 
-const Menu = ({isMenu}) => {
-
-    const [showItems, setShowItems] = useState();
-
-    useEffect(() => {
-      Axios.get(variables.URL + "all").then((response) => {
-        setShowItems(response.data);
-      }, [showItems]);
-    });
+const Menu = ({isMenu, showItems, setShowItems}) => {
 
     return (
         <div className="section-center">
