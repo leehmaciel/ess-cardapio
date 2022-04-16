@@ -44,41 +44,46 @@ const EditBox = (props) => {
   return (
     <div>
       <Dialog open={props.open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Editar</DialogTitle>
+        <DialogTitle id="form-dialog-title">Edit</DialogTitle>
         <DialogContent>
+
           <TextField
             autoFocus
-            margin="dense"
-            id="name"
-            label="Name"
-            defaultValue={props.name}
-            type="text"
-            onChange={handleChangeValues}
             fullWidth
+            required
+            id="outlined-required"
+            label="Name"
+            margin="dense"
+            type="text"
+            defaultValue={props.name}
+            onChange={handleChangeValues}
           />
+
           <TextField
             autoFocus
-            margin="dense"
-            id="price"
+            fullWidth
+            required
+            id="outlined-required"
             label="Price"
             defaultValue={props.price}
-            type="number"
             onChange={handleChangeValues}
-            fullWidth
           />
+
           <TextField
             autoFocus
-            margin="dense"
-            id="description"
-            label="Description"
-            defaultValue={props.description}
-            type="text"
-            onChange={handleChangeValues}
             fullWidth
+            multiline
+            id="outlined-multiline-static"
+            label="Description"
+            margin="dense"
+            rows={4}
+            type="text"
+            defaultValue={props.description}
+            onChange={handleChangeValues}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color="error">
             Cancel
           </Button>
           <Button color="primary" onClick={() => handleEditItem()}>

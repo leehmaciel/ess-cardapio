@@ -35,32 +35,39 @@ const Add = (props) => {
 
     <div>
         <Dialog open={props.open} onClose={handleClose} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title">Edit</DialogTitle>
-            
+            <DialogTitle id="form-dialog-title">Add</DialogTitle>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <DialogContent>
                     <TextField
+                        autoFocus
+                        fullWidth
                         required
                         id="outlined-required"
                         label="Name"
-                        helperText="Please enter the item name"
+                        margin="dense"
+                        type="text"
                         {...register("name")}
+                        
                     />
 
                     <TextField
+                        autoFocus
+                        fullWidth
                         required
                         id="outlined-required"
                         label="Price"
-                        helperText="Please enter the item price"
                         {...register("price")}
-                        />
+                     />
 
                     <TextField
+                        autoFocus
+                        fullWidth
+                        multiline
                         id="outlined-multiline-static"
                         label="Description"
-                        multiline
+                        margin="dense"
                         rows={4}
-                        helperText="Please enter a description for the item"
+                        type="text"
                         {...register("description")}
                     />
                 </DialogContent>
