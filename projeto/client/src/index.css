@@ -132,8 +132,9 @@ p {
 .logo {
   object-fit: cover;
   height: auto;
-  width: 200px;
-  border-radius: 0.25rem;  
+  width: 125px;
+  border-radius: 0.25rem; 
+  margin-top: 20px; 
 }
 
 .item-info header {

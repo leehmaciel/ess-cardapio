@@ -5,7 +5,7 @@ import Menu from "./Menu";
 import Categories from "./Categories";
 import './App.css';
 import items from "./data";
-import logo from "./logo.svg";
+import logo from "./brigadeiro.png";
 import Axios from 'axios';
 import variables from './variables.json';
 import Button from '@mui/material/Button';
@@ -43,7 +43,7 @@ const Home = ({isMenu}) => {
             <div className="section"> 
                 <div className="title">
                     <img src={logo} className="logo" />
-                    <h2> Menu List </h2>
+                    <h2> TortiLet Patisserie </h2>
                     <div className="underline"></div>
                 </div>
 
