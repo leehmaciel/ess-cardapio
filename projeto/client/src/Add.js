@@ -1,53 +1,77 @@
-import React, { useState } from "react";
+import React from "react";
 import {useForm} from "react-hook-form";
 import Axios from "axios";
-import variables from './variables.json';
-import './Add.css';
 
-function Add() {
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
+import variables from './variables.json';
+
+const Add = (props) => {
 
   const {register, handleSubmit} = useForm();
 
   const onSubmit = (values) => {
+      debugger
     Axios.post(variables.URL + "add", {
       name: values.name,
       price: values.price,
       description: values.description, 
     }).then((response) => {
         console.log(response);
+        handleClose();
     });
   }
 
+  const handleClose = () => {
+    props.setOpen(false);
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
 
-      <label>Nome:
-        <input 
-          type="text" 
-          {...register("name")}
-          placeholder="Digite o nome do produto" 
-        />
-      </label>
+    <div>
+        <Dialog open={props.open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <DialogTitle id="form-dialog-title">Edit</DialogTitle>
+            
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <DialogContent>
+                    <TextField
+                        required
+                        id="outlined-required"
+                        label="Name"
+                        helperText="Please enter the item name"
+                        {...register("name")}
+                    />
 
-      <label>Preco:
-        <input 
-        type="text" 
-        {...register("price")}
-        placeholder="Digite o valor"
-      />
-      </label>
+                    <TextField
+                        required
+                        id="outlined-required"
+                        label="Price"
+                        helperText="Please enter the item price"
+                        {...register("price")}
+                        />
 
-      <label>Descricao:
-        <input 
-          type="text" 
-          {...register("description")}
-          placeholder="Digite a descricao do seu produto"
-        />
-      </label>
+                    <TextField
+                        id="outlined-multiline-static"
+                        label="Description"
+                        multiline
+                        rows={4}
+                        helperText="Please enter a description for the item"
+                        {...register("description")}
+                    />
+                </DialogContent>
 
-      <button type="submit">Adicionar</button>
-
-    </form>
+                <DialogActions>
+                    <Button variant="outlined" onClick={handleClose}>Cancel</Button>
+                    <Button variant="contained" type="submit">Save</Button>
+                </DialogActions>
+            </form>
+        </Dialog>
+    </div>
   );
 }
 
