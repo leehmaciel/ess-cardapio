@@ -1,8 +1,16 @@
 import React, {useState} from "react";
-import Button from "@material-ui/core/Button";
 import Axios from "axios";
 import EditBox from "./EditBox";
 import variables from './variables.json';
+
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Edit from '@mui/icons-material/Edit';
+import Typography from '@mui/material/Typography';
 
 const ItensEdit = (props) => {
 
@@ -15,7 +23,7 @@ const ItensEdit = (props) => {
     };
 
     return (
-        <div>
+        <div className="Item">
             <EditBox 
                 open={open}
                 setOpen={setOpen}
@@ -26,20 +34,32 @@ const ItensEdit = (props) => {
                 price={props.price}
                 description={props.description}
             />
-            <article key={props.id} className="menu-item">
-                <img src="/" alt={props.name} className="photo" />
-                <div className="item-info">
-                    <header>
-                        <h4>{props.name}</h4>
-                        <h4 className="price">R${props.price}</h4>
-                    </header>
-                    <p className="item-text">{props.description}</p>
-                </div>
-                <div>
-                    <Button onClick={() => setOpen(true)}>Edit</Button>
-                    <Button onClick={() => handleDeleteItem(props)}>Delete</Button>
-                </div>
-            </article>
+
+            <Card sx={{ maxWidth: 345 }} key={props.id}>
+                <CardMedia
+                    component="img"
+                    height="140"
+                    image=" "
+                    alt={props.name}
+                />
+                <CardContent>
+                    <div className="ItemHeader">
+                        <Typography gutterBottom variant="h5" component="div">
+                            {props.name}
+                        </Typography>
+                        <Typography gutterBottom variant="h6" component="div">
+                            R${props.price}
+                        </Typography>
+                    </div>
+                    <Typography variant="body2" color="text.secondary">
+                        {props.description}
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button size="small" variant="outlined" startIcon={<Edit />} onClick={() => setOpen(true)}>Edit</Button>
+                    <Button size="small" variant="outlined" startIcon={<DeleteIcon />} color="error" onClick={() => handleDeleteItem(props)}>Delete</Button>
+                </CardActions>
+            </Card>
         </div>
     );
 };

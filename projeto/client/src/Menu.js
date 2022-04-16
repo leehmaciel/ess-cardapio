@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from "react";
-import Axios from 'axios';
-import variables from './variables.json';
 import Itens from './Itens';
 import ItensEdit from "./ItensEdit";
 
 const Menu = ({isMenu, showItems, setShowItems}) => {
 
     return (
-        <div className="section-center">
+        <div className="MenuItems">
 
             {typeof showItems !== "undefined" && showItems.map((item) => {
                 if (isMenu){
