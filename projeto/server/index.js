@@ -25,7 +25,7 @@ app.post('/add', (req, res) => {
     const { price } = req.body;
     const { description } = req.body;
 
-    let request = "INSERT INTO itens (name, price, description) VALUES (?, ?, ?)";
+    let request = "INSERT INTO item (name, price, description) VALUES (?, ?, ?)";
 
     db.query(request, [name, price, description], (err, result) => {
         res.send(result);
@@ -34,7 +34,7 @@ app.post('/add', (req, res) => {
 
 //READ
 app.get("/all", (req, res) => {
-    let request = "SELECT * FROM itens";
+    let request = "SELECT * FROM item";
     
     db.query(request, (err, result) => {
         err ? console.log(err) : res.send(result);
@@ -48,7 +48,7 @@ app.put("/edit", (req, res) => {
     const { price } = req.body;
     const { description } = req.body;
 
-    let request = "UPDATE itens SET name= ?, price = ?, description = ? WHERE id = ?"
+    let request = "UPDATE item SET name= ?, price = ?, description = ? WHERE id = ?"
 
     db.query(request, [name, price, description, id], (err, result) => {
         err ? console.log(err) : res.send(result);
@@ -59,7 +59,7 @@ app.put("/edit", (req, res) => {
 app.delete("/delete/:id", (req, res) => {
     const { id } = req.params;
 
-    let request = "DELETE FROM itens WHERE id = ?";
+    let request = "DELETE FROM item WHERE id = ?";
 
     console.log(request);
     
