@@ -7,8 +7,9 @@ function App() {
   return(
     <Router>
       <Routes>
-        <Route path="/" element={<Home isMenu={true}/>} />
-        <Route path="/edit" element={<Home isMenu={false} />} />
+        <Route path="/" element={<Home isMenu={true} isSettings={false}/>} />
+        <Route path="/edit" element={<Home isMenu={false} isSettings={false}/>} />
+        <Route path="/edit/settings" element={<Home isMenu={false} isSettings={true}/>} />
       </Routes>
     </Router>
   );
