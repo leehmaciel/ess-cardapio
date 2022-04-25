@@ -16,11 +16,10 @@ import Typography from '@mui/material/Typography';
 
 import variables from './variables.json';
 
-const Category = () => {
+const Category = ({showCategories, setShowCategories}) => {
 
     let navigate = useNavigate ();
 
-    const [showCategories, setShowCategories] = useState();
     const [openAdd, setOpenAdd] = useState(false);
 
     const handleDeleteItem = (id) => {
@@ -28,13 +27,6 @@ const Category = () => {
             setShowCategories([]);
         });
     };
-
-    useEffect(() => {
-        Axios.get(variables.URL + "allCategory").then((response) => {
-            setShowCategories(response.data);
-        }, [showCategories]);
-    });
-
 
     return ( 
         <div className="category_body">

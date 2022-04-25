@@ -13,7 +13,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 import variables from './variables.json';
 
-const Menu = ({isMenu, isSettings, open, setOpen, showItems, setShowItems}) => {
+const Menu = ({isMenu, isSettings, open, setOpen, showCategories, setShowCategories, showItems, setShowItems}) => {
     
     let navigate = useNavigate ();
     
@@ -32,6 +32,7 @@ const Menu = ({isMenu, isSettings, open, setOpen, showItems, setShowItems}) => {
             <Add
                 open={open}
                 setOpen={setOpen}
+                showCategories={showCategories}
                 showItems={showItems} 
                 setShowItems={setShowItems}
             />
@@ -63,7 +64,7 @@ const Menu = ({isMenu, isSettings, open, setOpen, showItems, setShowItems}) => {
                             />
                         );
                     })
-                : <Category />
+                : <Category showCategories={showCategories} setShowCategories={setShowCategories}/>
             }
 
         </div>

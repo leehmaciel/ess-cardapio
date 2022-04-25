@@ -17,11 +17,18 @@ const Home = ({isMenu, isSettings}) => {
 
     const [open, setOpen] = useState(false);
     const [showItems, setShowItems] = useState();
+    const [showCategories, setShowCategories] = useState([]);
 
     useEffect(() => {
         Axios.get(variables.URL + "all").then((response) => {
           setShowItems(response.data);
         }, [showItems]);
+    });
+
+    useEffect(() => {
+        Axios.get(variables.URL + "allCategory").then((response) => {
+            setShowCategories(response.data);
+        }, [showCategories]);
     });
 
     return (
@@ -46,6 +53,8 @@ const Home = ({isMenu, isSettings}) => {
                     isSettings={isSettings}
                     open={open} 
                     setOpen={setOpen}
+                    showCategories={showCategories} 
+                    setShowCategories={setShowCategories}
                     showItems={showItems} 
                     setShowItems={setShowItems} 
                 />

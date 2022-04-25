@@ -1,12 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import {useForm} from "react-hook-form";
 import Axios from "axios";
 
+import Button from '@mui/material/Button';
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 
 import variables from './variables.json';
@@ -14,7 +15,12 @@ import variables from './variables.json';
 const Add = (props) => {
 
     const {register, handleSubmit} = useForm();
-    
+    const [category, setCategory] = useState("");
+        
+    const handleChange = (event) => {
+        setCategory(event.target.value);
+    };
+
     const handleClose = () => {
         props.setOpen(false);
     };
@@ -28,7 +34,7 @@ const Add = (props) => {
                 console.log(response);
                 handleClose();
             });
-    }
+    };
 
     return (
 
@@ -57,7 +63,24 @@ const Add = (props) => {
                             label="Price"
                             {...register("price")}
                          />
-    
+                         
+                        <TextField
+                            autoFocus
+                            fullWidth
+                            id="outlined-select-currency"
+                            select
+                            label="Select"
+                            margin="dense"
+                            value={category}
+                            onChange={handleChange}
+                        >
+                            {props.showCategories.map((option) => (
+                                <MenuItem key={option.id} value={option.name}>
+                                    {option.name}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                        
                         <TextField
                             autoFocus
                             fullWidth
