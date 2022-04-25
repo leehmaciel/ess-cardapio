@@ -68,6 +68,39 @@ app.delete("/delete/:id", (req, res) => {
     });
 });
 
+//CREATE CATEGORY
+app.post('/addCategory', (req, res) => {
+    const name = req.body.name;
+    
+    let request = "INSERT INTO category (name) VALUES (?)";
+
+    db.query(request, name, (err, result) => {
+        res.send(result);
+    });
+});
+
+//READ CATEGORY
+app.get("/allCategory", (req, res) => {
+    let request = "SELECT * FROM category";
+    
+    db.query(request, (err, result) => {
+        err ? console.log(err) : res.send(result);
+    });
+});
+
+//DELETE CATEGORY
+app.delete("/deleteCategory/:id", (req, res) => {
+    const { id } = req.params;
+
+    let request = "DELETE FROM category WHERE id = ?";
+
+    console.log(request);
+    
+    db.query(request, id, (err, result) => {
+        err ? console.log(err) : res.send(result);
+    });
+});
+
 app.listen(3001, () => {
     console.log("Server running!");
 });
