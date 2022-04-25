@@ -23,11 +23,12 @@ const db = mysql.createPool({
 app.post('/add', (req, res) => {
     const { name } = req.body;
     const { price } = req.body;
+    const { category } = req.body;
     const { description } = req.body;
 
-    let request = "INSERT INTO item (name, price, description) VALUES (?, ?, ?)";
+    let request = "INSERT INTO item (name, price, category, description) VALUES (?, ?, ?, ?)";
 
-    db.query(request, [name, price, description], (err, result) => {
+    db.query(request, [name, price, category, description], (err, result) => {
         res.send(result);
     });
 });

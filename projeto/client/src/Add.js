@@ -29,7 +29,8 @@ const Add = (props) => {
         Axios.post(variables.URL + "add", {
             name: values.name,
             price: values.price,
-            description: values.description, 
+            category: values.category, 
+            description: values.description,
         }).then((response) => {
                 console.log(response);
                 handleClose();
@@ -67,12 +68,13 @@ const Add = (props) => {
                         <TextField
                             autoFocus
                             fullWidth
+                            required
                             id="outlined-select-currency"
                             select
-                            label="Select"
+                            label="Category"
                             margin="dense"
-                            value={category}
                             onChange={handleChange}
+                            {...register("category")}
                         >
                             {props.showCategories.map((option) => (
                                 <MenuItem key={option.id} value={option.name}>

@@ -41,7 +41,7 @@ const Item = ({isMenu, id, description, name, price, showItems, setShowItems, to
     };
 
     return ( 
-        <div className="Item">
+        <div className="item">
             <EditBox 
                 id={id}
                 description={description}
@@ -70,7 +70,7 @@ const Item = ({isMenu, id, description, name, price, showItems, setShowItems, to
                     />
 
                     <CardContent>
-                        <div className="ItemHeader">
+                        <div className="item-header">
                             <Typography gutterBottom variant="h5" component="div">
                                 {name}
                             </Typography>

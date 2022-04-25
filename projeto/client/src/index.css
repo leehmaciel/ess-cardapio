@@ -43,6 +43,12 @@ p {
     align-items: center;    
 }
 
+.item-header{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 1vw;
+}
+
 .container{
     display: flex;
     flex-direction: column;
@@ -58,7 +64,7 @@ p {
     }
 }
 
-.Item{
+.item{
     display: flex;
     flex-direction: row;
     align-items: center;
