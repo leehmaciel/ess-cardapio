@@ -39,17 +39,26 @@ const Category = () => {
     return ( 
         <div className="category_body">
 
+            <AddCategory
+                openAdd={openAdd}
+                setOpenAdd={setOpenAdd}
+                showCategories={showCategories} 
+                setShowCategories={setShowCategories}
+            />
+
             <div className="category-menu navigation">
-                <AddCategory
-                    openAdd={openAdd}
-                    setOpenAdd={setOpenAdd}
-                    showCategories={showCategories} 
-                    setShowCategories={setShowCategories}
-                />
                 <Button variant="contained" size="small" onClick={() => {navigate("/edit");}}>Back</Button>
-                <Button variant="contained" size="small" startIcon={<AddIcon />} onClick={() => setOpenAdd(true)}>Add</Button>
             </div>
             
+            <div className="category-header">
+                <Typography variant="button" display="block" gutterBottom>
+                    Categories
+                </Typography>
+
+                <IconButton color="primary" aria-label="add new category" onClick={() => setOpenAdd(true)}>
+                    <AddIcon />
+                </IconButton>
+            </div>
             
             <List>
                 {typeof showCategories !== "undefined" && showCategories.map((category) => {
