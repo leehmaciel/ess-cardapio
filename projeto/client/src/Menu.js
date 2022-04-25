@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import Axios from "axios";
 
 import Add from "./Add";
+import Category from "./Category";
 import Item from './Item';
 
 import AddIcon from '@mui/icons-material/Add';
@@ -34,7 +35,8 @@ const Menu = ({isMenu, isSettings, open, setOpen, showItems, setShowItems}) => {
                 showItems={showItems} 
                 setShowItems={setShowItems}
             />
-            {!isMenu
+
+            {!isMenu && !isSettings
                 ?
                     <div className="navigation"> 
                         <Button variant="contained" size="small" startIcon={<AddIcon />} onClick={() => setOpen(true)}>Add</Button>
@@ -43,28 +45,25 @@ const Menu = ({isMenu, isSettings, open, setOpen, showItems, setShowItems}) => {
                     </div>
                 : null
             }
-            
-            {!isSettings && typeof showItems !== "undefined" && showItems.map((item) => {
-                return(
-                    <Item
-                        isMenu={isMenu}
-                        id={item.id}
-                        description={item.description}
-                        name={item.name}
-                        price={item.price}
-                        showItems={showItems} 
-                        setShowItems={setShowItems}
-                        toDelete={toDelete}
-                        setToDelete={setToDelete}
-                    />
-                );
-            })}
 
-            {isSettings
+            {!isSettings 
                 ?
-                    <h1>Teste</h1>
-            
-                : null
+                    typeof showItems !== "undefined" && showItems.map((item) => {
+                        return(
+                            <Item
+                                isMenu={isMenu}
+                                id={item.id}
+                                description={item.description}
+                                name={item.name}
+                                price={item.price}
+                                showItems={showItems} 
+                                setShowItems={setShowItems}
+                                toDelete={toDelete}
+                                setToDelete={setToDelete}
+                            />
+                        );
+                    })
+                : <Category />
             }
 
         </div>
