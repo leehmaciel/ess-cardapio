@@ -11,19 +11,18 @@ import TextField from '@mui/material/TextField';
 
 import variables from './variables.json';
 
-const AddCategory = (props) => {
+const AddCategory = ({openAdd, setOpenAdd, showCategories, setShowCategories}) => {
 
     const {register, handleSubmit} = useForm();
     
     const handleClose = () => {
-        props.setOpen(false);
+        setOpenAdd(false);
     };
 
     const onSubmit = (values) => {
-        Axios.post(variables.URL + "add", {
-            name: values.name,
-            price: values.price,
-            description: values.description, 
+        console.log(values.name);
+        Axios.post(variables.URL + "addCategory", {
+            name: values.name, 
         }).then((response) => {
                 console.log(response);
                 handleClose();
@@ -33,7 +32,7 @@ const AddCategory = (props) => {
     return (
 
         <div>
-            <Dialog open={props.open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog open={openAdd} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Add</DialogTitle>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <DialogContent>
