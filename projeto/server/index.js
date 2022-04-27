@@ -28,7 +28,7 @@ app.post('/add', (req, res) => {
     let request = "INSERT INTO item (name, price, description) VALUES (?, ?, ?)";
 
     db.query(request, [name, price, description], (err, result) => {
-        res.send(result);
+        err ? res.send(err) : res.send(result);
     });
 });
 

@@ -25,9 +25,17 @@ const Add = (props) => {
             price: values.price,
             description: values.description, 
         }).then((response) => {
-                console.log(response);
-                handleClose();
-            });
+            if(response.data.message === ""){
+                props.setAlertContent("Item salvo com sucesso!");
+                props.setAlertWarning("success");
+                props.setAlert(true);
+            }else{
+                props.setAlertContent("Item não foi salvo");
+                props.setAlertWarning("error");
+                props.setAlert(true);
+            }
+        });
+        handleClose();
     }
 
     return (

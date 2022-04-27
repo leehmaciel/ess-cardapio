@@ -10,7 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import variables from './variables.json';
 
-const Menu = ({isMenu, open, setOpen, showItems, setShowItems}) => {
+const Menu = ({isMenu, setAlert, setAlertContent, setAlertWarning, open, setOpen, showItems, setShowItems}) => {
     const [toDelete, setToDelete] = useState([]);
 
     const handleDeleteAll = () => {
@@ -25,9 +25,10 @@ const Menu = ({isMenu, open, setOpen, showItems, setShowItems}) => {
         <div className="MenuItems">
             <Add
                 open={open}
+                setAlert={setAlert}
+                setAlertContent={setAlertContent}
+                setAlertWarning={setAlertWarning}
                 setOpen={setOpen}
-                showItems={showItems} 
-                setShowItems={setShowItems}
             />
             {!isMenu
                 ?
