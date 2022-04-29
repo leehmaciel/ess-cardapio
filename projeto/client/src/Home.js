@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Outlet} from "react-router-dom";
 import Axios from 'axios';
-
-import Add from "./Add";
-import Menu from "./Menu"
 
 import Button from '@mui/material/Button';
 
@@ -11,11 +8,10 @@ import logo from "./brigadeiro.png";
 
 import variables from './variables.json';
 
-const Home = ({isMenu}) => {
+const Home = () => {
 
     let navigate = useNavigate ();
 
-    const [open, setOpen] = useState(false);
     const [showItems, setShowItems] = useState();
 
     useEffect(() => {
@@ -36,21 +32,11 @@ const Home = ({isMenu}) => {
                 <div className="navigation">
                     <Button variant="contained" onClick={() => {navigate("/");}}>Home</Button>
                     <Button variant="contained" onClick={() => {navigate("/edit");}}>Edit</Button>
+                    <Button variant="contained" onClick={() => {navigate("/share");}}>Share</Button>
                 </div>
             
             </div>
-
-            <div className="containerBody">
-                <Menu 
-                    isMenu={isMenu} 
-                    open={open} 
-                    setOpen={setOpen}
-                    showItems={showItems} 
-                    setShowItems={setShowItems} 
-                />
-            </div>
-
-
+            <Outlet />
         </div>
     );
 
