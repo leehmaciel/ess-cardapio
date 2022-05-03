@@ -16,7 +16,7 @@ import Typography from '@mui/material/Typography';
 
 import variables from './variables.json';
 
-const Item = ({isMenu, id, description, name, price, showItems, setShowItems, toDelete, setToDelete}) => {
+const Item = ({isMenu, id, category, description, name, price, showItems, setShowItems, toDelete, setToDelete}) => {
     
     const [checked, setChecked] = useState(false);
     const [open, setOpen] = useState(false);
@@ -44,6 +44,7 @@ const Item = ({isMenu, id, description, name, price, showItems, setShowItems, to
         <div className="item">
             <EditBox 
                 id={id}
+                category={category}
                 description={description}
                 name={name}
                 price={price}
@@ -80,16 +81,29 @@ const Item = ({isMenu, id, description, name, price, showItems, setShowItems, to
                         </div>
                         <Typography variant="body2" color="text.secondary">
                             {description}
-                        </Typography>
+                        </Typography>                    
                     </CardContent>
+
                     
-                    {!isMenu 
-                        ? <CardActions>
-                            <Button size="small" variant="outlined" startIcon={<Edit />} onClick={() => setOpen(true)}>Edit</Button>
-                            <Button size="small" variant="outlined" startIcon={<DeleteIcon />} color="error" onClick={() => handleDeleteItem(id)}>Delete</Button>
-                        </CardActions>
-                        : null
-                    }
+                        {!isMenu
+                            ? 
+                            <div className="item-footer-edit">
+                                <CardActions>
+                                    <Button size="small" variant="outlined" startIcon={<Edit />} onClick={() => setOpen(true)}>Edit</Button>
+                                    <Button size="small" variant="outlined" startIcon={<DeleteIcon />} color="error" onClick={() => handleDeleteItem(id)}>Delete</Button>
+                                </CardActions>
+                                <Button size="small" color="secondary">
+                                    #{category.toUpperCase()}
+                                </Button>
+                            </div>
+                            : 
+                            <div className="item-footer" align="right">
+                                <Button size="medium" color="secondary">
+                                    #{category.toUpperCase()}
+                                </Button>
+                            </div>
+                        }
+
                     
                 </Card>
             </div>

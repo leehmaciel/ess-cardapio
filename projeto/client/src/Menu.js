@@ -54,6 +54,7 @@ const Menu = ({isMenu, isSettings, open, setOpen, showCategories, setShowCategor
                             <Item
                                 isMenu={isMenu}
                                 id={item.id}
+                                category={item.category}
                                 description={item.description}
                                 name={item.name}
                                 price={item.price}

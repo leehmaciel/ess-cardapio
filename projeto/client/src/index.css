@@ -43,10 +43,15 @@ p {
     align-items: center;    
 }
 
-.item-header{
+.item-header, .item-footer-edit{
     display: flex;
     justify-content: space-between;
     margin-right: 1vw;
+}
+
+.item-footer{
+    margin-right: 1vw;
+    margin-bottom: 1vh;
 }
 
 .container{
