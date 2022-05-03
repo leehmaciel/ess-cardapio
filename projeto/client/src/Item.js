@@ -16,7 +16,16 @@ import Typography from '@mui/material/Typography';
 
 import variables from './variables.json';
 
-const Item = ({isMenu, id, category, description, name, price, showItems, setShowItems, toDelete, setToDelete}) => {
+const Item = ({
+    isMenu, 
+    id,
+    category, 
+    description, 
+    name, 
+    price, 
+    showCategories, setShowCategories,
+    showItems, setShowItems, 
+    toDelete, setToDelete}) => {
     
     const [checked, setChecked] = useState(false);
     const [open, setOpen] = useState(false);
@@ -48,6 +57,8 @@ const Item = ({isMenu, id, category, description, name, price, showItems, setSho
                 description={description}
                 name={name}
                 price={price}
+                showCategories={showCategories} 
+                setShowCategories={setShowCategories}
                 open={open}
                 setOpen={setOpen}
                 showItems={showItems} 

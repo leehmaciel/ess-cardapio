@@ -45,13 +45,14 @@ app.get("/all", (req, res) => {
 //UPDATE - EDIT
 app.put("/edit", (req, res) => {
     const { id } = req.body;
+    const { category } = req.body;
     const { name } = req.body;
     const { price } = req.body;
     const { description } = req.body;
 
-    let request = "UPDATE item SET name= ?, price = ?, description = ? WHERE id = ?";
+    let request = "UPDATE item SET name= ?, price = ?, description = ?, category = ? WHERE id = ?";
 
-    db.query(request, [name, price, description, id], (err, result) => {
+    db.query(request, [name, price, description, category, id], (err, result) => {
         err ? console.log(err) : res.send(result);
     });
 });
