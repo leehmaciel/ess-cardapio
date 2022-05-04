@@ -3,7 +3,6 @@ import Axios from "axios";
 
 import Add from "./Add";
 import Item from './Item';
-import Share from './Share';
 
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
@@ -11,8 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import variables from './variables.json';
 
-const Menu = ({isMenu, showItems, setShowItems}) => {
-    const [open, setOpen] = useState(false);
+const Menu = ({isMenu, open, setOpen, showItems, setShowItems}) => {
     const [toDelete, setToDelete] = useState([]);
 
     const handleDeleteAll = () => {
